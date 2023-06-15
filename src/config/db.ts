@@ -19,7 +19,7 @@ const AppDataSource = new DataSource({
           ? 'src/entity/**/*.ts'
           : 'build/entity/**/*.js',
     ],    
-    synchronize: true,
+    synchronize: false,
     logging: false
 });
 

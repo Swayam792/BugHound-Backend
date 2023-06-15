@@ -30,7 +30,7 @@ const AppDataSource = new typeorm_1.DataSource({
             ? 'src/entity/**/*.ts'
             : 'build/entity/**/*.js',
     ],
-    synchronize: true,
+    synchronize: false,
     logging: false
 });
 exports.userRepository = AppDataSource.getRepository(User_1.User);
