@@ -15,7 +15,9 @@ const projectRouter_1 = __importDefault(require("./routes/projectRouter"));
 const noteRouter_1 = __importDefault(require("./routes/noteRouter"));
 const bugRouter_1 = __importDefault(require("./routes/bugRouter"));
 const app = (0, express_1.default)();
-app.use((0, cors_1.default)());
+app.use((0, cors_1.default)({
+    origin: "*"
+}));
 app.use(express_1.default.json());
 app.use("/", authRouter_1.default);
 app.use("/users", userRouter_1.default);
