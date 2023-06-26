@@ -6,6 +6,7 @@ import { Bug } from '../entity/Bug';
 import { Member } from '../entity/Member';
 import { Note } from '../entity/Note';
 import { Project } from '../entity/Project';
+import "dotenv/config"
 
 const AppDataSource = new DataSource({
     type: 'postgres',
@@ -16,8 +17,8 @@ const AppDataSource = new DataSource({
     database: 'bughound',
     entities: [
         process.env.NODE_ENV === 'test'
-          ? 'src/entity/**/*.ts'
-          : 'build/entity/**/*.js',
+          ? '*/entity/**/*.ts'
+          : '*/entity/**/*.js',
     ],    
     synchronize: false,
     logging: false

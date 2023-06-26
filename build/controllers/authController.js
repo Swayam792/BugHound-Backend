@@ -56,34 +56,41 @@ exports.signUpUser = signUpUser;
 const loginUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { username, password } = req.body;
     const { errors, valid } = (0, validators_1.loginValidator)(username, password);
-    if (!valid) {
-        return res.status(400).send({ message: Object.values(errors)[0] });
-    }
-    const user = yield db_1.userRepository.findOne({
-        where: {
-            username: username
+    try {
+        if (!valid) {
+            console.log(errors);
+            return res.status(400).send({ message: Object.values(errors)[0] });
         }
-    });
-    if (!user) {
-        return res.status(401).json({
-            message: `User: '${username}' not found.`
+        const user = yield db_1.userRepository.findOne({
+            where: {
+                username: username
+            }
+        });
+        if (!user) {
+            return res.status(401).json({
+                message: `User: '${username}' not found.`
+            });
+        }
+        const validPassword = yield bcrypt_1.default.compare(password, user.passwordHash);
+        if (!validPassword) {
+            return res.status(401).json({
+                message: 'Invalid credentials!'
+            });
+        }
+        const token = jsonwebtoken_1.default.sign({
+            id: user.id,
+            username: user.username,
+        }, environment_1.JWT_SECRET);
+        return res.status(201).json({
+            id: user.id,
+            username: user.username,
+            token
         });
     }
-    const validPassword = yield bcrypt_1.default.compare(password, user.passwordHash);
-    if (!validPassword) {
-        return res.status(401).json({
-            message: 'Invalid credentials!'
-        });
+    catch (err) {
+        console.log(err);
+        return res.status(500);
     }
-    const token = jsonwebtoken_1.default.sign({
-        id: user.id,
-        username: user.username,
-    }, environment_1.JWT_SECRET);
-    return res.status(201).json({
-        id: user.id,
-        username: user.username,
-        token
-    });
 });
 exports.loginUser = loginUser;
 //# sourceMappingURL=authController.js.map

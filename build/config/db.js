@@ -18,6 +18,7 @@ const Bug_1 = require("../entity/Bug");
 const Member_1 = require("../entity/Member");
 const Note_1 = require("../entity/Note");
 const Project_1 = require("../entity/Project");
+require("dotenv/config");
 const AppDataSource = new typeorm_1.DataSource({
     type: 'postgres',
     host: environment_1.DB_HOST,
@@ -27,8 +28,8 @@ const AppDataSource = new typeorm_1.DataSource({
     database: 'bughound',
     entities: [
         process.env.NODE_ENV === 'test'
-            ? 'src/entity/**/*.ts'
-            : 'build/entity/**/*.js',
+            ? '*/entity/**/*.ts'
+            : '*/entity/**/*.js',
     ],
     synchronize: false,
     logging: false
