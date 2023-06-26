@@ -18,7 +18,7 @@ const AppDataSource = new DataSource({
     entities: [
         process.env.NODE_ENV === 'test'
           ? '*/entity/**/*.ts'
-          : '*/entity/**/*.js',
+          : 'entity/**/*.js',
     ],    
     synchronize: false,
     logging: false
