@@ -9,7 +9,7 @@
     "add-build"
   ],
   "scripts": {
-    "start": "node src/server.ts",
+    "start": "nodemon src/server.ts",
     "build": "rimraf build && tsc",
     "ts.check": "tsc --project tsconfig.json",
     "add-build": "git add build",
@@ -45,6 +45,7 @@
     "jsonwebtoken": "^9.0.0",
     "pg": "^8.11.0",
     "reflect-metadata": "^0.1.13",
-    "typeorm": "^0.3.16"
+    "typeorm": "^0.3.16",
+    "nodemon": "^2.0.22"
   }
 }
