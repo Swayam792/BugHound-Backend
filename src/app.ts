@@ -13,13 +13,13 @@ import bugRouter from "./routes/bugRouter";
 const app = express();
 
 app.use(cors({
-    origin: "*"
+    origin: "https://bughound-chi.vercel.app"
 }));
 app.use(express.json());
 
 app.use("/", authRouter);
 app.use("/users", userRouter);
-app.use("/projects",projectRouter);
+app.use("/projects", projectRouter);
 app.use("/projects", memberRouter);
 app.use("/projects", noteRouter);
 app.use("/projects", bugRouter);
