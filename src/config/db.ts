@@ -8,8 +8,6 @@ import { Note } from '../entity/Note';
 import { Project } from '../entity/Project';
 import "dotenv/config"
 
-console.log(__dirname)
-
 const AppDataSource = new DataSource({
     type: 'postgres',
     host: DB_HOST,
@@ -17,7 +15,8 @@ const AppDataSource = new DataSource({
     username: DB_USERNAME,
     password: DB_PASSWORD,
     database: 'bughound',
-    entities: [ '*/entity/**/*.{js,ts}'],
+    entities: [User, Bug, Member, Note, Project],
+    // entities: [`${__dirname}/entity/**/*.{js,ts}`],
     synchronize: false,
     logging: false
 });

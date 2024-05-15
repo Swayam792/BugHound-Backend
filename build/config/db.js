@@ -19,7 +19,6 @@ const Member_1 = require("../entity/Member");
 const Note_1 = require("../entity/Note");
 const Project_1 = require("../entity/Project");
 require("dotenv/config");
-console.log(__dirname);
 const AppDataSource = new typeorm_1.DataSource({
     type: 'postgres',
     host: environment_1.DB_HOST,
@@ -27,7 +26,8 @@ const AppDataSource = new typeorm_1.DataSource({
     username: environment_1.DB_USERNAME,
     password: environment_1.DB_PASSWORD,
     database: 'bughound',
-    entities: ['*/entity/**/*.{js,ts}'],
+    entities: [User_1.User, Bug_1.Bug, Member_1.Member, Note_1.Note, Project_1.Project],
+    // entities: [`${__dirname}/entity/**/*.{js,ts}`],
     synchronize: false,
     logging: false
 });
